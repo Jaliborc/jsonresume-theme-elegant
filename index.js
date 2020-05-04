@@ -134,10 +134,11 @@ function html(resume, static) {
     })
 
     _.each(resume.publications, publication => {
-        let date = publication.releaseDate
-        if (date)
-            publication.releaseDate = utils.getFormattedDate(date, 'MMM DD, YYYY')
+        let award = !publication.award && _.find(publication.resources || [], p => _.lowerCase(p.type) == 'award')
+        if (award)
+          publication.award = award.name
 
+        publication.releaseDate = publication.releaseDate && utils.getFormattedDate(publication.releaseDate, 'MMM DD, YYYY')
         publication.summary = markdown(publication.summary)
     })
 

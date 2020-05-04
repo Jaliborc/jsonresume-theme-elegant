@@ -18,6 +18,9 @@ unless _.isEmpty(resume.publications)
                     else
                       |#{publication.name + ', '}
                   |#{publication.publisher}
+                  if publication.award
+                    = ', '
+                    strong= publication.award
 
                 p.text-muted
                   if publication.releaseDate
